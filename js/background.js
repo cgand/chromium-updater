@@ -2,7 +2,7 @@
 Extension: Chromium Updater
 Description: Check for, download and install the latest Chromium revisions
 Author: stullig
-Version: 0.1.1.4
+Version: 0.1.1.5
 */
 
 
@@ -200,13 +200,13 @@ function notify(uuid, icon, title, message, button, buttonIcon, url, button2) {
     richNote.buttons.push({title: "Go to FreeSMUG", iconUrl: "images/arrow.png"});
   }
   var link = function (notificationId, buttonIndex) {
-    url = (buttonIndex > 0) ? 'https://www.freesmug.org/chromium' : url;
+    url = (buttonIndex > 0) ? 'http://www.freesmug.org/chromium' : url;
     window.open(url);
   };
   chrome.notifications.create(uuid, richNote);
   chrome.notifications.onButtonClicked.addListener(function (notificationId, buttonIndex) {
     if(uuid == notificationId) {
-      url = (buttonIndex > 0) ? 'https://www.freesmug.org/chromium' : url;
+      url = (buttonIndex > 0) ? 'http://www.freesmug.org/chromium' : url;
       window.open(url);
     }
   });

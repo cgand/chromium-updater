@@ -1,6 +1,6 @@
 var $ = document.getElementById.bind(document);
 var backend = chrome.extension.getBackgroundPage();
-var website = "https://freesmug.org/chromium";
+var website = "http://www.freesmug.org/chromium";
 var latestStable, latestFreesmug, downloadURL = false;
 var updateStartup, updateHourly, officialStable, stableMismatch;
 var currentVer = window.navigator.userAgent.match(/Chrome\/([\d.]+)/)[1];
@@ -49,7 +49,7 @@ function init() {
     // $('stable').style.visibility = "visible";
     $('stable').style.display  = 'block';
     backend.getStable(false);
-  } 
+  }
   setTimeout(function() {
     $('installedLabel').innerText = currentVer;
   }, 400);
@@ -63,7 +63,7 @@ function matchVersion (version, link) {
       version = version.split('.');
       version.every(function(c,i,a) {
           if (parseFloat(current[i]) > parseFloat(version[i])) {
-            return false; // Break loop when current version segment is higher than 
+            return false; // Break loop when current version segment is higher than
           }
           else if (parseFloat(current[i]) < parseFloat(version[i])) {
             update = true;
@@ -72,7 +72,7 @@ function matchVersion (version, link) {
         return true;
         });
     if (update) {
-      chrome.browserAction.setIcon({path: 'images/update.png'});    
+      chrome.browserAction.setIcon({path: 'images/update.png'});
       $('installedLabel').setAttribute("style", "color: #ed1d0b; font-weight: none");
       $('freesmugVersion').setAttribute("style", "color: #4f9906; font-weight: none");
       $('updateMsg').setAttribute("style", "color: #ed1d0b; font-weight: none");
@@ -97,7 +97,7 @@ function matchVersion (version, link) {
     else {
       chrome.browserAction.setIcon({path: 'images/popup.png'});
       ['updateMsg', 'installedLabel', 'freesmugVersion'].forEach(function (s) {
-          $(s).setAttribute('style', 'color:#4f9906 ;'); 
+          $(s).setAttribute('style', 'color:#4f9906 ;');
       });
       setTimeout(function() {
       $('updateMsg').innerText = "You're up to date!";
@@ -107,6 +107,6 @@ function matchVersion (version, link) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  $('banner').addEventListener('click', function() { window.open("https://www.freesmug.org/chromium") });
+  $('banner').addEventListener('click', function() { window.open("http://www.freesmug.org/chromium") });
   $('options').addEventListener('click', function() { chrome.runtime.openOptionsPage();});
 });
